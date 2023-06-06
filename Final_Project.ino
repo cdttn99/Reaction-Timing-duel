@@ -48,8 +48,8 @@ if(game_State){
   CircuitPlayground.clearPixels();
   delay(200);
 for (int i = 0; i < 5; ++i){
-CircuitPlayground.setPixelColor(i, 0, 255, 0);
-CircuitPlayground.setPixelColor(9-i, 0, 255, 0);
+CircuitPlayground.setPixelColor(i, 160, 32, 240);
+CircuitPlayground.setPixelColor(9-i, 160, 32, 240);
 delay(500);
 }
 CircuitPlayground.clearPixels();
@@ -116,19 +116,20 @@ void score_Board(void){
 
 void game_Over_Player_Left(void){
 Serial.println("Right Player wins!!!");
-flash_Red();
-flash_Red();
-flash_Red();
-game_State = !game_State;
-play_Music = !play_Music;
-losses_Player_Right = 0;
-losses_Player_Left = 0;
+for(int i = 0; i < 3; ++i){
+  flash_Red();
+}
+reset();
 }
 void game_Over_Player_Right(void){
 Serial.println("Left Player wins!!!");
-flash_Blue();
-flash_Blue();
-flash_Blue();
+for(int i = 0; i < 3; ++i){
+  flash_Blue();
+}
+reset();
+}
+
+void reset(){
 game_State = !game_State;
 play_Music = !play_Music;
 losses_Player_Right = 0;
