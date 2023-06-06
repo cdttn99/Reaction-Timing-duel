@@ -10,9 +10,9 @@ Rules:
 3. Win Rounds 5 times in order to 
 
 INPUTS: 
-Switch: Changes the music staate and game state from on or off. Game states start as off and music starts as on
-Left Button: Press the button to record a time
-Right Button: Press the button to record a time
+- Switch: Changes the music staate and game state from on or off. Game states start as off and music starts as on
+- Left Button: Press the button to record a time
+- Right Button: Press the button to record a time
 
 OUTPUTS:
 1. Starts Playing menu music to indicate device has turned on
