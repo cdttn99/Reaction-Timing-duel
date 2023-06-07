@@ -41,6 +41,7 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(rButton), buttonRPressed, FALLING);
   attachInterrupt(digitalPinToInterrupt(mSwitch), mSwitchChanged, CHANGE);
   generateMIDI();
+  Serial.print("Flip the Switch to start!");
 }
 
 void game_Start(void){
@@ -53,7 +54,7 @@ CircuitPlayground.setPixelColor(9-i, 160, 32, 240);
 delay(500);
 }
 CircuitPlayground.clearPixels();
-delay(400);
+delay(1000);
 for(int i = 0; i < 10; ++i){
 CircuitPlayground.setPixelColor(i, 255, 0, 0);
 }
