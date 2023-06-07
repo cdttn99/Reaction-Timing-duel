@@ -8,7 +8,9 @@ int A_four = 440;
 int losses_Player_Left;
 int losses_Player_Right;
 int lButton_time;
+int lPrevious_Press;
 int rButton_time;
+int rPrevious_Press;
 
 
 float midi[127];
@@ -162,10 +164,24 @@ void loop(){
 
 void buttonLPressed(){
   lButton_time = millis();
+  if(lButton_time - lPrevious_Press > 2500){
+lButton_time = millis();
+lPrevious_Press = lButton_time;
+  }
+  else{
+    lButton_time = lPrevious_Press;
+  }
 }
 
 void buttonRPressed(){
   rButton_time = millis();
+  if(rButton_time - rPrevious_Press > 2500){
+rButton_time = millis();
+rPrevious_Press = rButton_time;
+  }
+  else{
+    rButton_time = rPrevious_Press;
+  }
 }
 
 void mSwitchChanged(){
