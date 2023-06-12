@@ -77,13 +77,25 @@ delay(3000);
   }
   else if((left_time < 0) && (right_time > 0)){
     ++losses_Player_Left;
+    if(left_time > -2500){
+      Serial.println("Left Player was too antsy Right Players Wins Round by Default");
+      score_Board();
+    }
+    else{
     Serial.println("Right Players Wins Round by Default");
     score_Board();
+    }
   }
   else if((left_time > 0) && (right_time < 0)){
     ++losses_Player_Right;
+    if(right_time > -2500){
+      Serial.println("Right Player was too antsy Left Players Wins Round by Default");
+      score_Board();
+    }
+    else{
     Serial.println("Left Players Wins Round by Default");
     score_Board();
+    }
   }
   else if (left_time > right_time){
     ++losses_Player_Left;
