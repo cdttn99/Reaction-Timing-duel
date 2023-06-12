@@ -14,11 +14,14 @@ int rPrevious_Press;
 
 
 float midi[127];
+//Music That will play at the game intro
 int song[27][2] = {
     {69, 100},{127, 100},{64, 100},{62, 100},{61, 100},{127, 200},{61, 100},{62, 100},{64, 100},{66, 100},{68, 100},{64, 100},{127, 300},{66, 100},{127, 100},{64, 100},{62,100},
     {61, 100}, {127,100},{61,100},{127,100},{59,100},{127,100},{61,100},{127,100},{62,100},{127,200}
   };
+  // Details how to play said music
 void main_Menu_Music(){
+  //Checks to verify music should be played
   if(play_Music){
   for(int i = 0; i < sizeof(song) / sizeof(song[0]); i++) // Calculate how many rows are in the array using: sizeof(song) / sizeof(song[0])
   {
@@ -45,12 +48,14 @@ void setup() {
   generateMIDI();
   Serial.print("Flip the Switch to start!");
 }
-
+//game_Start is the actual game itself
 void game_Start(void){
+  //checks to make sure game_state should be played
 if(game_State){
   CircuitPlayground.clearPixels();
   delay(200);
 for (int i = 0; i < 5; ++i){
+  //Startup sequence making the lights turn on
 CircuitPlayground.setPixelColor(i, 160, 32, 240);
 CircuitPlayground.setPixelColor(9-i, 160, 32, 240);
 delay(500);
@@ -61,6 +66,7 @@ for(int i = 0; i < 10; ++i){
 CircuitPlayground.setPixelColor(i, 255, 0, 0);
 }
 delay(random(500,2500));
+//Random Delay to turn from red to green
 for(int i = 0; i < 10; ++i){
   CircuitPlayground.setPixelColor(i, 0, 255, 0);
 }
@@ -72,6 +78,7 @@ delay(3000);
   Serial.println(left_time);
   Serial.print("Right Players Reaction Time:   ");
   Serial.println(right_time);
+  //Checks for who won the game and how they won it 
   if((left_time < 0) && (right_time <0)){
     Serial.println("No Winner");
   }
@@ -109,7 +116,7 @@ delay(3000);
   }
 }
 }
-
+// Tallys the player scores and checks for a win state
 void score_Board(void){
   CircuitPlayground.clearPixels();
   for (int i = 0; i < losses_Player_Right; ++i){
@@ -128,7 +135,7 @@ void score_Board(void){
     game_Over_Player_Right();
   }
 }
-
+// Function to end the game
 void game_Over_Player_Left(void){
 Serial.println("Right Player wins!!!");
 for(int i = 0; i < 3; ++i){
@@ -143,14 +150,14 @@ for(int i = 0; i < 3; ++i){
 }
 reset();
 }
-
+// At the end of a game resets all logic back to base start
 void reset(){
 game_State = !game_State;
 play_Music = !play_Music;
 losses_Player_Right = 0;
 losses_Player_Left = 0;
 }
-
+//Winning color flashes
 void flash_Red(){
   for(int i = 0; i < 10; ++i){
 CircuitPlayground.setPixelColor(i, 255, 0, 0);
@@ -167,13 +174,13 @@ delay(1000);
 CircuitPlayground.clearPixels();
 delay(1000);
 }
-
+//Main loop only has two functions
 void loop(){
 
   main_Menu_Music();
   game_Start();
 }
-
+//For both buttons it checks to make sure a button was not recently pressed to ensure a player that is too antsy loses
 void buttonLPressed(){
   lButton_time = millis();
   if(lButton_time - lPrevious_Press > 2500){
@@ -195,7 +202,7 @@ rPrevious_Press = rButton_time;
     rButton_time = rPrevious_Press;
   }
 }
-
+//Starts the game and turns off music
 void mSwitchChanged(){
   play_Music = !play_Music;
   game_State = !game_State;
