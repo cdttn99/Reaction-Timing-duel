@@ -47,7 +47,9 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(rButton), buttonRPressed, FALLING);
   attachInterrupt(digitalPinToInterrupt(mSwitch), mSwitchChanged, CHANGE);
   generateMIDI();
+  while(!Serial){
   Serial.print("Flip the Switch to start!");
+  }
 }
 //game_Start is the actual game itself
 void game_Start(void){
