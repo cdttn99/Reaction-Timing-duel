@@ -23,6 +23,7 @@ int song[27][2] = {
 void main_Menu_Music(){
   //Checks to verify music should be played
   if(play_Music){
+    soft_Reset();
   for(int i = 0; i < sizeof(song) / sizeof(song[0]); i++) // Calculate how many rows are in the array using: sizeof(song) / sizeof(song[0])
   {
     if(!play_Music){
@@ -151,14 +152,20 @@ for(int i = 0; i < 3; ++i){
 reset();
 }
 // At the end of a game resets all logic back to base start
-void reset(){
+void reset(void){
 game_State = !game_State;
 play_Music = !play_Music;
 losses_Player_Right = 0;
 losses_Player_Left = 0;
 }
+// if the switch is flipped resets logic and clears pixels
+void soft_Reset(void){
+losses_Player_Right = 0;
+losses_Player_Left = 0;
+CircuitPlayground.clearPixels();
+}
 //Winning color flashes
-void flash_Red(){
+void flash_Red(void){
   for(int i = 0; i < 10; ++i){
 CircuitPlayground.setPixelColor(i, 255, 0, 0);
 }
@@ -166,7 +173,7 @@ delay(1000);
 CircuitPlayground.clearPixels();
 delay(1000);
 }
-void flash_Blue(){
+void flash_Blue(void){
   for(int i = 0; i < 10; ++i){
 CircuitPlayground.setPixelColor(i, 0, 0, 255);
 }
