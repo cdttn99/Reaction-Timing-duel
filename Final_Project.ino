@@ -63,7 +63,7 @@ delay(500);
 CircuitPlayground.clearPixels();
 delay(1000);
 for(int i = 0; i < 10; ++i){
-CircuitPlayground.setPixelColor(i, 255, 0, 0);
+CircuitPlayground.setPixelColor(i, 255, 255, 0);
 }
 delay(random(500,2500));
 //Random Delay to turn from red to green
