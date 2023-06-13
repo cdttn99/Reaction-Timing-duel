@@ -7,7 +7,7 @@ Rules:
 
 1. Do not hit the button before the timer goes off or you will lose a round by default. 
 2. As soon as the lights flip from red to green attempt to hit your button as fast as possible
-3. Win Rounds 5 times in order to 
+3. Win Rounds 5 times in order to win!
 
 INPUTS: 
 - Switch: Changes the music staate and game state from on or off. Game states start as off and music starts as on
